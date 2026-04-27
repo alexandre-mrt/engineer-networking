@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EngineerHub — Network Smarter. Evolve Beyond Code.</title>
+  <meta name="description" content="Research-driven insights on networking in tech and evolving as an engineer in the AI era. 200+ sourced data points from GitHub, Anthropic, McKinsey, and more.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="src/css/style.css">
+
+  <!-- Theme detection (prevent FOUC) -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       PROGRESS BAR
+  ═══════════════════════════════════════════ -->
+  <div id="progress-bar"></div>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">Engineer<span>Hub</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#ai-shift">The AI Shift</a></li>
+        <li><a href="#networking">Networking</a></li>
+        <li><a href="#human-skills">Human Skills</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#case-studies">Case Studies</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="mobile-menu-btn" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Research-backed insights for 2026
+    </div>
+
+    <h1>Network Smarter.<br>Evolve <span class="gradient-text">Beyond Code.</span></h1>
+
+    <p>AI is transforming what it means to be an engineer. The developers who thrive won't just write better code &mdash; they'll build better relationships, communicate with clarity, and evolve into full-stack humans.</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat animate-on-scroll stagger-1">
+        <div class="number" data-count="46" data-suffix="%">0%</div>
+        <div class="label">of new code is AI-generated</div>
+      </div>
+      <div class="hero-stat animate-on-scroll stagger-2">
+        <div class="number" data-count="70" data-suffix="%">0%</div>
+        <div class="label">of jobs are never posted online</div>
+      </div>
+      <div class="hero-stat animate-on-scroll stagger-3">
+        <div class="number" data-count="58" data-suffix="%">0%</div>
+        <div class="label">of job success predicted by EQ</div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll to explore</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 1: THE AI SHIFT
+  ═══════════════════════════════════════════ -->
+  <section id="ai-shift">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-number">01 &mdash; THE LANDSCAPE</div>
+        <h2 class="section-title">AI Is Rewriting the Rules</h2>
+        <p class="section-subtitle">In 2025, AI stopped being a tool and started becoming a coworker. Every role in software engineering is being redefined. Here's what the data says.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card animate-on-scroll stagger-1">
+          <div class="stat-value">46%</div>
+          <div class="stat-label">AI-generated code by Copilot users</div>
+          <div class="stat-source">GitHub Octoverse 2025</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-2">
+          <div class="stat-value success">55.8%</div>
+          <div class="stat-label">Faster task completion with Copilot</div>
+          <div class="stat-source">GitHub Research, 4,800 developers</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-3">
+          <div class="stat-value danger">74.5%</div>
+          <div class="stat-label">AI task exposure for programmers</div>
+          <div class="stat-source">Anthropic Labor Market Study 2026</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-4">
+          <div class="stat-value warning">35%</div>
+          <div class="stat-label">Decline in entry-level dev postings</div>
+          <div class="stat-source">IEEE Spectrum 2025</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-5">
+          <div class="stat-value highlight">90%</div>
+          <div class="stat-label">Will use AI assistants by 2028</div>
+          <div class="stat-source">Gartner 2025 Forecast</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-6">
+          <div class="stat-value success">17.9%</div>
+          <div class="stat-label">Job growth expected 2023&ndash;2033</div>
+          <div class="stat-source">U.S. Bureau of Labor Statistics</div>
+        </div>
+      </div>
+
+      <!-- Chart: AI Risk by Role -->
+      <div class="chart-container animate-on-scroll">
+        <h3>AI Task Exposure by Role</h3>
+        <p class="chart-description">Percentage of tasks within each role that are exposed to AI automation. Higher exposure doesn't mean replacement &mdash; it means transformation.</p>
+        <div class="chart-wrapper" style="height: 350px;">
+          <canvas id="chart-ai-risk"></canvas>
+        </div>
+        <p class="chart-source">Sources: Anthropic Labor Market Study 2026, GitHub Octoverse 2025, McKinsey AI in Software Development</p>
+      </div>
+
+      <!-- Chart: Job Market Trends -->
+      <div class="chart-container animate-on-scroll">
+        <h3>Job Market Trends (2020&ndash;2026)</h3>
+        <p class="chart-description">Three diverging trajectories in tech hiring: AI/ML roles are surging, traditional development holds steady, and entry-level positions are shrinking.</p>
+        <div class="chart-wrapper" style="height: 350px;">
+          <canvas id="chart-job-market"></canvas>
+        </div>
+        <p class="chart-source">Sources: Indeed Job Market Data, Stack Overflow Developer Survey 2025, IEEE Spectrum</p>
+      </div>
+
+      <!-- Quote: Jensen Huang -->
+      <div class="quote-block animate-on-scroll">
+        <p class="quote-text">"You're not going to lose your job to an AI, but you're going to lose your job to someone who uses AI."</p>
+        <p class="quote-attribution"><strong>Jensen Huang</strong>, CEO of NVIDIA</p>
+      </div>
+
+      <!-- Quote: Boris Cherny -->
+      <div class="quote-block animate-on-scroll">
+        <p class="quote-text">"The software engineer title could be gone by the end of 2026. We'll just call them builders."</p>
+        <p class="quote-attribution"><strong>Boris Cherny</strong>, Engineering at Anthropic</p>
+      </div>
+
+      <!-- Expandable Sections -->
+      <div class="expandable animate-on-scroll">
+        <div class="expandable-header">
+          <h4>What AI Can and Can't Do</h4>
+          <span class="expandable-icon">+</span>
+        </div>
+        <div class="expandable-content">
+          <div class="expandable-body">
+            <p>AI handles the <strong>routine 70%</strong> of coding tasks: boilerplate, unit tests, documentation, simple bug fixes, and code translation. But the <strong>critical 30%</strong> remains deeply human:</p>
+            <ul>
+              <li><strong>System architecture</strong> &mdash; designing systems that scale, choosing the right trade-offs for specific constraints</li>
+              <li><strong>Security reasoning</strong> &mdash; threat modeling, understanding attack surfaces, and building defense-in-depth</li>
+              <li><strong>Business logic</strong> &mdash; translating ambiguous requirements into precise implementations</li>
+              <li><strong>Cross-team coordination</strong> &mdash; navigating organizational complexity and aligning technical decisions with business goals</li>
+              <li><strong>Ethical judgment</strong> &mdash; deciding what should be built, not just what can be built</li>
+            </ul>
+            <p class="source-link">Sources: McKinsey AI in Software Development, GitHub Copilot Research 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expandable animate-on-scroll">
+        <div class="expandable-header">
+          <h4>The Entry-Level Crisis</h4>
+          <span class="expandable-icon">+</span>
+        </div>
+        <div class="expandable-content">
+          <div class="expandable-body">
+            <p>The data paints a concerning picture for new graduates:</p>
+            <ul>
+              <li><strong>54%</strong> of engineering leaders plan to hire fewer juniors due to AI capabilities <span class="source-link">(Salesforce Engineering Survey 2025)</span></li>
+              <li>Entry-level postings fell <strong>29&ndash;35%</strong> globally since January 2024 <span class="source-link">(IEEE Spectrum)</span></li>
+              <li>Employment for developers aged 22&ndash;25 declined <strong>~20%</strong> from 2022 peak <span class="source-link">(BLS Data)</span></li>
+              <li><strong>70%</strong> of hiring managers believe AI can do intern-level jobs <span class="source-link">(Resume Builder Survey 2025)</span></li>
+              <li>Jobs requiring 3 years or less experience dropped from <strong>43% to 28%</strong> of all postings <span class="source-link">(Indeed Analytics)</span></li>
+            </ul>
+            <p>The implication: juniors need to differentiate through soft skills, networking, and demonstrated project work &mdash; not just technical competence.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expandable animate-on-scroll">
+        <div class="expandable-header">
+          <h4>Counter-Arguments: Why Devs Won't Be Fully Replaced</h4>
+          <span class="expandable-icon">+</span>
+        </div>
+        <div class="expandable-content">
+          <div class="expandable-body">
+            <p>Despite the alarming headlines, several powerful counter-forces are at play:</p>
+            <ul>
+              <li><strong>17.9% job growth</strong> projected for software developers from 2023 to 2033 <span class="source-link">(U.S. Bureau of Labor Statistics)</span></li>
+              <li>Software engineer listings on Indeed are up <strong>11% annually</strong> <span class="source-link">(Indeed 2025)</span></li>
+              <li><strong>540,000 new engineering jobs</strong> projected for 2025 alone <span class="source-link">(Worldmetrics)</span></li>
+              <li>Programmer employment fell 27.5%, but <strong>software developers</strong> only declined 0.3% &mdash; the distinction matters <span class="source-link">(BLS 2025)</span></li>
+              <li>AI creates new roles: prompt engineers, AI safety researchers, model evaluators, human-AI interaction designers</li>
+            </ul>
+            <p>The consensus: <em>"AI won't replace developers. It will make the best ones indispensable."</em></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 2: HOW TO NETWORK
+  ═══════════════════════════════════════════ -->
+  <section id="networking" class="alt-bg">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-number">02 &mdash; STRATEGIC NETWORKING</div>
+        <h2 class="section-title">Build Your Network Before You Need It</h2>
+        <p class="section-subtitle">The hidden job market, weak ties theory, and research-backed frameworks that actually work for engineers.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <!-- Doughnut Chart: Hidden Job Market -->
+      <div class="chart-container animate-on-scroll">
+        <h3>The Hidden Job Market</h3>
+        <p class="chart-description">Most opportunities never make it to a job board. Understanding where jobs actually come from fundamentally changes how you should spend your career development time.</p>
+        <div class="chart-wrapper" style="height: 320px;">
+          <canvas id="chart-network"></canvas>
+        </div>
+        <p class="chart-source">Sources: Zippia Employee Referral Statistics 2025, LinkedIn Economic Graph Research</p>
+      </div>
+
+      <!-- Key stat callout -->
+      <div class="prose content-width animate-on-scroll" style="text-align: center; margin: 48px auto;">
+        <p style="font-size: 1.25rem; color: var(--text);"><strong>70&ndash;85% of jobs are never posted online.</strong> Your next role is far more likely to come through a conversation than through a job board.</p>
+      </div>
+
+      <!-- Referral Stats -->
+      <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="stat-card animate-on-scroll stagger-1">
+          <div class="stat-value">15x</div>
+          <div class="stat-label">More likely to be hired via referral</div>
+          <div class="stat-source">Zippia 2025</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-2">
+          <div class="stat-value highlight">30&ndash;50%</div>
+          <div class="stat-label">Of all hires come from referrals</div>
+          <div class="stat-source">LinkedIn Talent Solutions</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-3">
+          <div class="stat-value success">46%</div>
+          <div class="stat-label">Referral hires stay past 1 year</div>
+          <div class="stat-source">vs 14% from job boards</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-4">
+          <div class="stat-value warning">$1K</div>
+          <div class="stat-label">Referral cost vs $4&ndash;18K traditional</div>
+          <div class="stat-source">SHRM Recruiting Data</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs" data-tabs="networking-tabs" style="margin-top: 64px;">
+        <button class="tab active" data-target="tab-frameworks">Frameworks</button>
+        <button class="tab" data-target="tab-introverts">For Introverts</button>
+        <button class="tab" data-target="tab-online">Online</button>
+        <button class="tab" data-target="tab-outreach">Cold Outreach</button>
+      </div>
+
+      <div data-tab-group="networking-tabs">
+
+        <!-- Tab 1: Frameworks -->
+        <div id="tab-frameworks" class="tab-content active">
+          <div class="framework-card animate-on-scroll">
+            <h4>Never Eat Alone</h4>
+            <p class="framework-author">Keith Ferrazzi</p>
+            <p>Generosity-based networking: lead by offering value before asking for anything. Build your network before you need it, not after you're desperate. Key principles:</p>
+            <ul>
+              <li><strong>The Networking Mindset</strong> &mdash; Shift from "what can you do for me?" to "how can I help?"</li>
+              <li><strong>Build Before You Need</strong> &mdash; Start cultivating relationships 6&ndash;12 months before any transition</li>
+              <li><strong>The Ping</strong> &mdash; Stay connected with regular, lightweight touches (article shares, congratulations, quick check-ins)</li>
+              <li><strong>Vulnerability</strong> &mdash; Authenticity deepens connections faster than performative networking</li>
+            </ul>
+          </div>
+
+          <div class="framework-card animate-on-scroll">
+            <h4>Give and Take</h4>
+            <p class="framework-author">Adam Grant</p>
+            <p>Research shows three reciprocity styles: Givers, Takers, and Matchers. Givers who set boundaries achieve the highest long-term success.</p>
+            <ul>
+              <li><strong>The Five-Minute Favor</strong> &mdash; Help anyone if it takes 5 minutes or less. The ROI is asymmetric and compounds</li>
+              <li><strong>Brokering Introductions</strong> &mdash; Connecting two people who should know each other is the highest-leverage networking move</li>
+              <li><strong>Otherish Giving</strong> &mdash; Generous but with boundaries. Selfless givers burn out; otherish givers thrive</li>
+            </ul>
+          </div>
+
+          <div class="framework-card animate-on-scroll">
+            <h4>The Alliance</h4>
+            <p class="framework-author">Reid Hoffman (LinkedIn co-founder)</p>
+            <p>The employer-employee relationship reimagined as tours of duty with explicit mutual investment:</p>
+            <ul>
+              <li><strong>Rotational Tour</strong> &mdash; Learn the company, explore fit (0&ndash;2 years)</li>
+              <li><strong>Transformational Tour</strong> &mdash; Deep investment in a mission, personal growth (2&ndash;5 years)</li>
+              <li><strong>Foundational Tour</strong> &mdash; Long-term commitment, identity aligned with company</li>
+              <li><strong>Network Intelligence</strong> &mdash; Use your professional network as a strategic asset for your team</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 2: For Introverts -->
+        <div id="tab-introverts" class="tab-content">
+          <div class="prose animate-on-scroll">
+            <p style="font-size: 1.125rem; color: var(--text); font-weight: 600; margin-bottom: 24px;">60&ndash;65% of engineers are introverts. Networking doesn't require being extroverted &mdash; it requires being strategic.</p>
+
+            <h3>Quality Over Quantity</h3>
+            <p>Research consistently shows that <strong>5&ndash;8 deep relationships</strong> outperform hundreds of shallow connections. Introverts naturally excel at depth. Lean into it.</p>
+
+            <h3>Content as a Passive Networking Engine</h3>
+            <p>Writing a blog post, contributing to open source, or sharing insights on LinkedIn lets your network come to you. One technical post per month positions you as an expert without a single awkward mixer. <span class="source-link">(80,000 Hours Career Guide)</span></p>
+
+            <h3>Schedule Recovery Time</h3>
+            <p>At conferences and meetups, schedule <strong>30&ndash;45 minutes of networking</strong> followed by an equal amount of recovery time. Set a goal of 2&ndash;3 meaningful conversations, not 20 business card exchanges.</p>
+
+            <h3>Leverage One-on-One Settings</h3>
+            <p>Coffee chats, pair programming, and mentoring sessions play to introvert strengths. Skip the cocktail party; invite someone to lunch.</p>
+          </div>
+        </div>
+
+        <!-- Tab 3: Online -->
+        <div id="tab-online" class="tab-content">
+          <div class="prose animate-on-scroll">
+            <p style="font-size: 1.125rem; color: var(--text); font-weight: 600; margin-bottom: 24px;">Optimized LinkedIn profiles receive up to 40x more opportunities. <span class="source-link">(LinkedIn Talent Solutions 2025)</span></p>
+
+            <h3>LinkedIn Optimization</h3>
+            <ul>
+              <li><strong>Headline</strong> &mdash; Use 100+ characters with relevant keywords. Algorithmic weight is highest here <span class="source-link">(Protingent 2026)</span></li>
+              <li><strong>Professional photo</strong> &mdash; Profiles with photos get 21x more views and 9x more connection requests <span class="source-link">(LinkedIn Data)</span></li>
+              <li><strong>Verified skills</strong> &mdash; Boost your chance of being contacted by recruiters by 30% <span class="source-link">(LinkedIn 2025)</span></li>
+              <li><strong>Front-load achievements</strong> &mdash; Recruiters spend an average of 6 seconds per profile</li>
+            </ul>
+
+            <h3>GitHub as Your Portfolio</h3>
+            <ul>
+              <li>Pinned repos with clear READMEs serve as living proof of competence</li>
+              <li>Consistent contribution graphs signal dedication (even small commits count)</li>
+              <li>Open-source contributions connect you globally and teach soft skills <span class="source-link">(GitHub Octoverse 2025)</span></li>
+            </ul>
+
+            <h3>Personal Branding: Pick One Channel</h3>
+            <ul>
+              <li><strong>Blog</strong> &mdash; 1 technical post/month establishes expertise and attracts inbound interest</li>
+              <li><strong>Speak</strong> &mdash; 1&ndash;2 talks/year at meetups or conferences attracts recruiters and mentors</li>
+              <li><strong>Contribute</strong> &mdash; Meaningful open-source work is the strongest portfolio piece in tech</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab 4: Cold Outreach -->
+        <div id="tab-outreach" class="tab-content">
+          <div class="prose animate-on-scroll">
+
+            <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 32px;">
+              <div class="stat-card">
+                <div class="stat-value highlight">18&ndash;25%</div>
+                <div class="stat-label">LinkedIn InMail response rate</div>
+                <div class="stat-source">vs cold email at 1&ndash;5%</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">50&ndash;125</div>
+                <div class="stat-label">Optimal word count for outreach</div>
+                <div class="stat-source">50% higher reply rate than longer messages</div>
+              </div>
+            </div>
+
+            <h3>What the Data Says</h3>
+            <ul>
+              <li><strong>Personalization triples response rates</strong> &mdash; Reference a specific project, talk, or article by the recipient <span class="source-link">(LinkedIn Talent Solutions)</span></li>
+              <li><strong>Research-driven messages only</strong> &mdash; Generic "I'd love to pick your brain" gets ignored. Show you've done homework</li>
+              <li><strong>Lead with value</strong> &mdash; Share an insight, a relevant resource, or a specific question that demonstrates your thinking</li>
+              <li><strong>Follow up once</strong> &mdash; One follow-up after 5&ndash;7 days increases response by 40%. More than one feels pushy</li>
+            </ul>
+
+            <h3>Template Structure</h3>
+            <p>The best outreach messages follow this pattern:</p>
+            <ul>
+              <li><strong>Line 1:</strong> Specific connection point (their talk, project, article)</li>
+              <li><strong>Line 2:</strong> What you're working on and why it relates</li>
+              <li><strong>Line 3:</strong> One clear, easy-to-answer question</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Expandable: Dunbar Model -->
+      <div class="expandable animate-on-scroll" style="margin-top: 48px;">
+        <div class="expandable-header">
+          <h4>The Dunbar Model &mdash; Maintaining Your Network</h4>
+          <span class="expandable-icon">+</span>
+        </div>
+        <div class="expandable-content">
+          <div class="expandable-body">
+            <p>Robin Dunbar's research shows humans can maintain <strong>~150 meaningful relationships</strong>. The key is tiered maintenance:</p>
+            <ul>
+              <li><strong>5 (Inner Circle)</strong> &mdash; Weekly contact. Close mentors, collaborators, career allies</li>
+              <li><strong>15 (Close Friends)</strong> &mdash; Monthly contact. People you'd call for advice or a referral</li>
+              <li><strong>50 (Good Friends)</strong> &mdash; Quarterly contact. Regular touchpoints, holiday messages, shared interests</li>
+              <li><strong>150 (Meaningful Contacts)</strong> &mdash; Annual contact. Conference connections, former colleagues, industry peers</li>
+            </ul>
+            <p style="margin-top: 16px;"><strong>Personal CRM Tools:</strong></p>
+            <ul>
+              <li><strong>Clay</strong> &mdash; Auto-aggregates contact data from email, calendar, LinkedIn. News alerts for your contacts</li>
+              <li><strong>Dex</strong> &mdash; LinkedIn sync for up to 9K contacts with auto-reminders and relationship scoring</li>
+              <li><strong>Monica</strong> &mdash; Open-source, self-hostable personal CRM. Privacy-focused alternative</li>
+            </ul>
+            <p style="margin-top: 16px;">For networks beyond 500 people, a <strong>monthly newsletter</strong> is the most efficient way to maintain weak ties. One update per month keeps you top-of-mind with minimal effort. <span class="source-link">(80,000 Hours Career Guide)</span></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 3: THE FULL-STACK HUMAN
+  ═══════════════════════════════════════════ -->
+  <section id="human-skills">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-number">03 &mdash; EVOLVE OR STAGNATE</div>
+        <h2 class="section-title">Become the Engineer AI Can't Replace</h2>
+        <p class="section-subtitle">Technical depth gets you in the door. Human skills determine how far you go. The data is unambiguous.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <!-- Radar Chart: Traditional vs Full-Stack Human -->
+      <div class="chart-container animate-on-scroll">
+        <h3>Traditional Engineer vs. Full-Stack Human</h3>
+        <p class="chart-description">The "full-stack human" maintains strong technical foundations while developing the human skills that AI cannot replicate. This is the profile that thrives.</p>
+        <div class="chart-wrapper" style="height: 400px;">
+          <canvas id="chart-skills-radar"></canvas>
+        </div>
+        <p class="chart-source">Source: Composite model based on LinkedIn Skills Genome Project, TalentSmart EQ Research, Google Project Aristotle</p>
+      </div>
+
+      <!-- Stacked Bar Chart: Career Progression -->
+      <div class="chart-container animate-on-scroll">
+        <h3>Technical vs. Human Skills by Career Level</h3>
+        <p class="chart-description">As you advance, the weight shifts dramatically. Senior leadership is 80% human skills. Plan your development accordingly.</p>
+        <div class="chart-wrapper" style="height: 380px;">
+          <canvas id="chart-career-salary"></canvas>
+        </div>
+        <p class="chart-source">Sources: Levels.fyi Career Framework Data, Will Larsen "Staff Engineer", Camille Fournier "The Manager's Path"</p>
+      </div>
+
+      <!-- EQ Stats Grid -->
+      <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="stat-card animate-on-scroll stagger-1">
+          <div class="stat-value highlight">58%</div>
+          <div class="stat-label">Job success predicted by EQ</div>
+          <div class="stat-source">TalentSmart, 1M+ professionals</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-2">
+          <div class="stat-value success">90%</div>
+          <div class="stat-label">Top performers score high in EQ</div>
+          <div class="stat-source">TalentSmart Research</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-3">
+          <div class="stat-value">71%</div>
+          <div class="stat-label">Employers prize EQ over IQ</div>
+          <div class="stat-source">CareerBuilder Survey</div>
+        </div>
+        <div class="stat-card animate-on-scroll stagger-4">
+          <div class="stat-value warning">92%</div>
+          <div class="stat-label">Value soft skills equally or more</div>
+          <div class="stat-source">LinkedIn Global Talent Trends</div>
+        </div>
+      </div>
+
+      <!-- Skill Bars: Most Valued Human Skills -->
+      <div class="prose content-width animate-on-scroll" style="margin: 48px auto;">
+        <h3>Most Valued Human Skills in Tech Hiring</h3>
+        <p>Based on analysis of 10,000+ job postings and hiring manager surveys. <span class="source-link">(LinkedIn Global Talent Trends 2025, CareerBuilder)</span></p>
+      </div>
+
+      <div class="skill-bars animate-on-scroll" style="max-width: 700px; margin: 0 auto;">
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span>Communication</span>
+            <span style="color: var(--text-secondary);">95%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" data-width="95%"></div>
+          </div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span>Problem-Solving</span>
+            <span style="color: var(--text-secondary);">91%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill highlight" data-width="91%"></div>
+          </div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span>Emotional Intelligence</span>
+            <span style="color: var(--text-secondary);">88%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill success" data-width="88%"></div>
+          </div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span>Teamwork</span>
+            <span style="color: var(--text-secondary);">85%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" data-width="85%"></div>
+          </div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span>Adaptability</span>
+            <span style="color: var(--text-secondary);">82%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill warning" data-width="82%"></div>
+          </div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span>Critical Thinking</span>
+            <span style="color: var(--text-secondary);">80%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill highlight" data-width="80%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two-Column Layout -->
+      <div class="two-col" style="margin-top: 64px;">
+
+        <!-- Left Column: Communication Frameworks -->
+        <div class="animate-on-scroll">
+          <h3 style="font-size: 1.375rem; font-weight: 600; margin-bottom: 24px;">Frameworks for Better Communication</h3>
+
+          <div class="framework-card">
+            <h4>Radical Candor</h4>
+            <p class="framework-author">Kim Scott</p>
+            <p>The intersection of <strong>Care Personally</strong> and <strong>Challenge Directly</strong>. Without care, directness becomes obnoxious aggression. Without challenge, caring becomes ruinous empathy.</p>
+            <ul>
+              <li>Give feedback within 24 hours while context is fresh</li>
+              <li>Praise in public, critique in private</li>
+              <li>Ask for feedback before giving it &mdash; model the behavior you want</li>
+            </ul>
+          </div>
+
+          <div class="framework-card">
+            <h4>Nonviolent Communication</h4>
+            <p class="framework-author">Marshall Rosenberg</p>
+            <p>A four-step process that transforms difficult conversations:</p>
+            <ul>
+              <li><strong>Observation</strong> &mdash; State facts without judgment ("When the deploy failed...")</li>
+              <li><strong>Feelings</strong> &mdash; Express your experience ("I felt frustrated...")</li>
+              <li><strong>Needs</strong> &mdash; Identify what's behind the feeling ("...because I need reliability")</li>
+              <li><strong>Requests</strong> &mdash; Make a specific ask ("Could we add a staging check?")</li>
+            </ul>
+          </div>
+
+          <div class="framework-card">
+            <h4>Crucial Conversations</h4>
+            <p class="framework-author">Patterson, Grenny, McMillan, Switzler</p>
+            <p>For high-stakes discussions where emotions run strong and opinions differ:</p>
+            <ul>
+              <li><strong>Start with Heart</strong> &mdash; Clarify what you really want from the conversation</li>
+              <li><strong>Make it Safe</strong> &mdash; People shut down when they feel threatened. Create psychological safety first</li>
+              <li><strong>Master Your Stories</strong> &mdash; Separate facts from the stories you tell yourself about those facts</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Career Paths -->
+        <div class="animate-on-scroll">
+          <h3 style="font-size: 1.375rem; font-weight: 600; margin-bottom: 24px;">Career Paths Beyond Code</h3>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-year">Year 0&ndash;3</div>
+                <h4>Junior &rarr; Senior Engineer</h4>
+                <p><strong>80% technical / 20% human.</strong> Master your craft, learn to communicate decisions, and start building your network. Ship code, get mentored, contribute to code reviews.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-year">Year 3&ndash;5</div>
+                <h4>Senior &rarr; Staff / Tech Lead</h4>
+                <p><strong>55% technical / 45% human.</strong> The inflection point. You now influence projects beyond your team. Design docs, mentoring, cross-team coordination become core responsibilities.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-year">Year 5&ndash;8</div>
+                <h4>Staff &rarr; Principal / Manager</h4>
+                <p><strong>45% technical / 55% human.</strong> You choose: IC track or management. Both require strong communication, strategic thinking, and organizational influence. Technical decisions have company-wide impact.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-year">Year 8+</div>
+                <h4>Principal &rarr; Distinguished / Director / VP / Founder</h4>
+                <p><strong>20% technical / 80% human.</strong> At this level, your impact comes through people, not code. Vision, empathy, narrative, and organizational design are your primary tools.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quote: Satya Nadella -->
+      <div class="quote-block animate-on-scroll" style="margin-top: 64px;">
+        <p class="quote-text">"Empathy is not a soft skill; it's the most formidable skill of them all."</p>
+        <p class="quote-attribution"><strong>Satya Nadella</strong>, CEO of Microsoft</p>
+      </div>
+
+      <!-- Google's Project Aristotle -->
+      <div class="framework-card animate-on-scroll" style="margin-top: 32px; border-left: 4px solid var(--success);">
+        <h4>Google's Project Aristotle: What Makes Teams Effective</h4>
+        <p class="framework-author">Google People Operations, 2015 (validated through 2025)</p>
+        <p>After studying 180+ teams, Google found that <strong>psychological safety</strong> is the #1 factor for team performance &mdash; far outweighing individual talent, structure, or resources.</p>
+        <ul>
+          <li><strong>43%</strong> of variance in team performance is explained by psychological safety <span class="source-link">(Google re:Work)</span></li>
+          <li>Teams with high psychological safety show <strong>19% higher productivity</strong> <span class="source-link">(Gallup 2024)</span></li>
+          <li>Psychologically safe teams produce <strong>31% more innovation</strong> <span class="source-link">(Harvard Business Review)</span></li>
+          <li>The implication: the engineer who makes others feel safe to speak up is more valuable than the 10x coder who intimidates the team</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 4: RESOURCES
+  ═══════════════════════════════════════════ -->
+  <section id="resources" class="alt-bg">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-number">04 &mdash; YOUR TOOLKIT</div>
+        <h2 class="section-title">Curated Resources</h2>
+        <p class="section-subtitle">The books, podcasts, courses, and tools that will accelerate your evolution from coder to full-stack human.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar animate-on-scroll">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="book">Books</button>
+        <button class="filter-btn" data-filter="podcast">Podcasts</button>
+        <button class="filter-btn" data-filter="course">Courses</button>
+        <button class="filter-btn" data-filter="tool">Tools</button>
+      </div>
+
+      <!-- Resources Grid -->
+      <div class="resources-grid">
+
+        <!-- Books -->
+        <div class="resource-card animate-on-scroll stagger-1" data-category="book">
+          <span class="resource-tag book">Book</span>
+          <h4>Never Eat Alone</h4>
+          <p class="author">Keith Ferrazzi</p>
+          <p class="description">The definitive guide to generosity-based networking and relationship building. Practical frameworks for engineers who find networking unnatural.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-2" data-category="book">
+          <span class="resource-tag book">Book</span>
+          <h4>Give and Take</h4>
+          <p class="author">Adam Grant</p>
+          <p class="description">Research-backed evidence that helping others drives personal success. Introduces the five-minute favor and giver/taker dynamics.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-3" data-category="book">
+          <span class="resource-tag book">Book</span>
+          <h4>Staff Engineer</h4>
+          <p class="author">Will Larsen</p>
+          <p class="description">Leadership beyond the management track. How to operate as a senior IC with influence, technical vision, and organizational awareness.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-4" data-category="book">
+          <span class="resource-tag book">Book</span>
+          <h4>The Manager's Path</h4>
+          <p class="author">Camille Fournier</p>
+          <p class="description">The complete guide to growth from engineer to technical leader. Covers every transition from tech lead to CTO with hard-won wisdom.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-5" data-category="book">
+          <span class="resource-tag book">Book</span>
+          <h4>Radical Candor</h4>
+          <p class="author">Kim Scott</p>
+          <p class="description">How to give direct feedback with genuine care. The framework that transformed feedback culture at Google and Apple.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-6" data-category="book">
+          <span class="resource-tag book">Book</span>
+          <h4>Deep Work</h4>
+          <p class="author">Cal Newport</p>
+          <p class="description">Rules for focused success in a distracted world. Essential for engineers balancing deep technical work with networking and communication.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-1" data-category="book">
+          <span class="resource-tag book">Book</span>
+          <h4>Range</h4>
+          <p class="author">David Epstein</p>
+          <p class="description">Why generalists triumph in a specialized world. The case for breadth over narrow expertise, especially in the AI era.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-2" data-category="book">
+          <span class="resource-tag book">Book</span>
+          <h4>Crucial Conversations</h4>
+          <p class="author">Patterson, Grenny, McMillan, Switzler</p>
+          <p class="description">Tools for talking when stakes are high. The go-to guide for navigating difficult discussions without damaging relationships.</p>
+        </div>
+
+        <!-- Podcasts -->
+        <div class="resource-card animate-on-scroll stagger-3" data-category="podcast">
+          <span class="resource-tag podcast">Podcast</span>
+          <h4>Software Engineering Daily</h4>
+          <p class="author">Jeff Meyerson</p>
+          <p class="description">1,500+ episodes covering systems, architecture, and career growth. The most comprehensive technical podcast in the industry.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-4" data-category="podcast">
+          <span class="resource-tag podcast">Podcast</span>
+          <h4>Soft Skills Engineering</h4>
+          <p class="author">Dave Smith &amp; Jamison Dance</p>
+          <p class="description">Weekly advice on the non-technical side of software careers: salary negotiation, team dynamics, career transitions, and management.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-5" data-category="podcast">
+          <span class="resource-tag podcast">Podcast</span>
+          <h4>The Pragmatic Engineer</h4>
+          <p class="author">Gergely Orosz</p>
+          <p class="description">Engineering leadership insights from a former Uber engineer. Deep dives into how Big Tech actually works from the inside.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-6" data-category="podcast">
+          <span class="resource-tag podcast">Podcast</span>
+          <h4>Lex Fridman Podcast</h4>
+          <p class="author">Lex Fridman</p>
+          <p class="description">Deep, long-form conversations with tech leaders, AI researchers, and industry shapers. Essential context for the AI-era engineer.</p>
+        </div>
+
+        <!-- Courses -->
+        <div class="resource-card animate-on-scroll stagger-1" data-category="course">
+          <span class="resource-tag course">Course</span>
+          <h4>LinkedIn Learning: Soft Skills Path</h4>
+          <p class="author">LinkedIn Learning</p>
+          <p class="description">Curated pathways on leadership, communication, and negotiation. Structured progression from individual contributor to people manager.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-2" data-category="course">
+          <span class="resource-tag course">Course</span>
+          <h4>Leading Engineering Teams</h4>
+          <p class="author">Coursera</p>
+          <p class="description">Collaboration, presentation, and team management skills tailored for engineering contexts. Includes peer-reviewed capstone projects.</p>
+        </div>
+
+        <!-- Tools -->
+        <div class="resource-card animate-on-scroll stagger-3" data-category="tool">
+          <span class="resource-tag tool">Tool</span>
+          <h4>Clay</h4>
+          <p class="author">Personal CRM</p>
+          <p class="description">Auto-aggregates contact data from email, calendar, and LinkedIn. Surfaces news about your contacts and suggests reconnection timing.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-4" data-category="tool">
+          <span class="resource-tag tool">Tool</span>
+          <h4>Dex</h4>
+          <p class="author">Relationship Manager</p>
+          <p class="description">LinkedIn sync supporting up to 9,000 contacts. Auto-syncing, relationship scoring, and smart reminders to stay in touch.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-5" data-category="tool">
+          <span class="resource-tag tool">Tool</span>
+          <h4>Monica</h4>
+          <p class="author">Open-Source CRM</p>
+          <p class="description">Privacy-focused, self-hostable personal CRM. Track relationships, interactions, and important dates without sending data to third parties.</p>
+        </div>
+
+        <div class="resource-card animate-on-scroll stagger-6" data-category="tool">
+          <span class="resource-tag tool">Tool</span>
+          <h4>Claude Code</h4>
+          <p class="author">Anthropic</p>
+          <p class="description">Agentic AI coding assistant with 200K context window. The tool that makes the "someone who uses AI" in Jensen Huang's quote a reality.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 5: CASE STUDIES
+  ═══════════════════════════════════════════ -->
+  <section id="case-studies">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <div class="section-number">05 &mdash; LEARN FROM THE BEST</div>
+        <h2 class="section-title">Engineers Who Evolved</h2>
+        <p class="section-subtitle">Four engineers who transcended pure coding to reshape the industry. Their paths share one common thread: human skills amplified technical brilliance.</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
+
+        <!-- Patrick Collison -->
+        <div class="framework-card animate-on-scroll stagger-1">
+          <div class="tag" style="margin-bottom: 16px;">Founder Track</div>
+          <h4>Patrick Collison</h4>
+          <p class="framework-author">Co-founder &amp; CEO, Stripe</p>
+          <p>Started programming at age 10. Won Ireland's Young Scientist of the Year at 16. Built and sold Auctomatic (an eBay tool) at 19 for $5M. Co-founded Stripe at 22 with his brother John.</p>
+          <ul>
+            <li><strong>Technical foundation:</strong> Deep enough to write Stripe's first code</li>
+            <li><strong>Human evolution:</strong> Built one of the most developer-loved companies by obsessing over developer experience &mdash; a fundamentally empathetic act</li>
+            <li><strong>Networking insight:</strong> Recruited world-class talent through personal connections, not job postings</li>
+          </ul>
+        </div>
+
+        <!-- Guillermo Rauch -->
+        <div class="framework-card animate-on-scroll stagger-2">
+          <div class="tag" style="margin-bottom: 16px;">Builder Track</div>
+          <h4>Guillermo Rauch</h4>
+          <p class="framework-author">Founder &amp; CEO, Vercel</p>
+          <p>Started coding at 10 in Argentina. Created Socket.IO (real-time web), then Next.js (now the most popular React framework). Founded Vercel, now valued at $3.5B+.</p>
+          <ul>
+            <li><strong>Technical foundation:</strong> Open-source contributions that millions depend on</li>
+            <li><strong>Human evolution:</strong> Evolved from IC to CEO, now says "Everyone's an engineer now" &mdash; championing AI-augmented development</li>
+            <li><strong>Networking insight:</strong> Built his reputation through open source, then leveraged community trust to build a company</li>
+          </ul>
+        </div>
+
+        <!-- Kelsey Hightower -->
+        <div class="framework-card animate-on-scroll stagger-3">
+          <div class="tag" style="margin-bottom: 16px;">Community Track</div>
+          <h4>Kelsey Hightower</h4>
+          <p class="framework-author">Distinguished Engineer (retired), Google</p>
+          <p>Self-taught programmer who became one of the most influential voices in cloud computing. Never held a CS degree. Rose to Distinguished Engineer at Google through Kubernetes evangelism and community building.</p>
+          <ul>
+            <li><strong>Technical foundation:</strong> Deep Kubernetes and cloud-native expertise</li>
+            <li><strong>Human evolution:</strong> Became the industry's most trusted voice by teaching, speaking, and making complex things simple</li>
+            <li><strong>Networking insight:</strong> Proof that community building and teaching are the most powerful career accelerators</li>
+          </ul>
+        </div>
+
+        <!-- Satya Nadella -->
+        <div class="framework-card animate-on-scroll stagger-4">
+          <div class="tag" style="margin-bottom: 16px;">Leadership Track</div>
+          <h4>Satya Nadella</h4>
+          <p class="framework-author">CEO, Microsoft</p>
+          <p>Joined Microsoft as an engineer in 1992. Spent 22 years rising through engineering and product roles before becoming CEO in 2014. Transformed Microsoft's culture from "know-it-all" to "learn-it-all."</p>
+          <ul>
+            <li><strong>Technical foundation:</strong> Engineering background in cloud and enterprise systems</li>
+            <li><strong>Human evolution:</strong> Rebuilt Microsoft's culture around empathy and growth mindset, leading to a 10x increase in market cap</li>
+            <li><strong>Networking insight:</strong> His empathy-driven leadership attracted talent and partnerships (including the pivotal OpenAI deal)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <a href="#" class="nav-logo" style="display: inline-block; margin-bottom: 8px;">Engineer<span>Hub</span></a>
+        <p style="font-size: 0.813rem; color: var(--text-tertiary);">Research compiled from 50+ sources including GitHub, Anthropic, McKinsey, LinkedIn, and Google.</p>
+      </div>
+
+      <ul style="list-style: none; display: flex; gap: 24px; flex-wrap: wrap;">
+        <li><a href="#ai-shift">The AI Shift</a></li>
+        <li><a href="#networking">Networking</a></li>
+        <li><a href="#human-skills">Human Skills</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#case-studies">Case Studies</a></li>
+      </ul>
+
+      <p style="font-size: 0.75rem; color: var(--text-tertiary); width: 100%; text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">Built with research, not opinions. &copy; 2026 EngineerHub.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       FILTER SCRIPT (inline, lightweight)
+  ═══════════════════════════════════════════ -->
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.querySelectorAll('.resource-card').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Main JS -->
+  <script src="src/js/main.js"></script>
+</body>
+</html>
