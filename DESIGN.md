@@ -44,10 +44,10 @@ A content-rich, research-driven website about networking in tech and evolving as
 ## Typography
 
 ### Font Stack
-- **Headings**: `Inter`, system sans-serif fallback
-- **Body**: `Inter`, system sans-serif fallback
+- **Headings (h1, h2)**: `Fraunces`, variable serif with optical sizing (editorial, distinctive)
+- **Body + Sub-headings (h3)**: `Plus Jakarta Sans`, system sans-serif fallback (readable, personality)
 - **Mono/Data**: `JetBrains Mono`, monospace fallback
-- **Pull Quotes**: `Playfair Display`, serif fallback (editorial accent)
+- **Pull Quotes**: `Instrument Serif`, serif fallback (high-contrast editorial)
 
 ### Scale (fluid, clamp-based)
 | Level | Size | Weight | Line Height | Letter Spacing |

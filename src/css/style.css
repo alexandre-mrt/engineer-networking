@@ -46,12 +46,17 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.7;
   transition: background-color 0.2s, color 0.2s;
   overflow-x: hidden;
+}
+
+h1, h2, .section-title, .hero h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-optical-sizing: auto;
 }
 
 .content-width {
@@ -430,7 +435,7 @@ section.alt-bg {
 }
 
 .quote-text {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(1.125rem, 2vw, 1.5rem);
   font-style: italic;
   line-height: 1.6;
@@ -471,7 +476,7 @@ section.alt-bg {
   background: var(--surface-muted);
 }
 
-.expandable-header h4 {
+.expandable-header h3 {
   font-size: 1rem;
   font-weight: 600;
 }
@@ -560,7 +565,8 @@ section.alt-bg {
 .resource-tag.course { background: color-mix(in srgb, var(--success) 12%, transparent); color: var(--success); }
 .resource-tag.tool { background: color-mix(in srgb, var(--warning) 12%, transparent); color: var(--warning); }
 
-.resource-card h4 {
+.resource-card h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 4px;
@@ -693,7 +699,7 @@ section.alt-bg {
   margin-bottom: 8px;
 }
 
-.timeline-content h4 {
+.timeline-content h3 {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 8px;
@@ -935,7 +941,7 @@ footer a:hover { color: var(--accent); }
   margin-bottom: 24px;
 }
 
-.framework-card h4 {
+.framework-card h3 {
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 4px;
