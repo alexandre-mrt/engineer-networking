@@ -1,198 +1,167 @@
-import OpenAI from "openai";
-import type { ImageModel } from "openai/resources/images";
 import { writeFile, mkdir } from "fs/promises";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-
-// ---------------------------------------------------------------------------
-// Configuration
-// ---------------------------------------------------------------------------
-
-const MODEL: ImageModel = "gpt-image-1";
-const QUALITY = "low" as const;
-const COST_PER_IMAGE_USD = 0.005;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ASSETS_DIR = join(__dirname, "..", "src", "assets");
 
-type ImageSize = "1024x1024" | "1536x1024" | "1024x1536";
+const BASE_URL = "https://image.pollinations.ai/prompt";
 
 interface ImageSpec {
   name: string;
   prompt: string;
-  size: ImageSize;
+  width: number;
+  height: number;
+  seed: number;
 }
-
-// ---------------------------------------------------------------------------
-// Image definitions
-// ---------------------------------------------------------------------------
 
 const IMAGES: ReadonlyArray<ImageSpec> = [
   {
     name: "hero-mesh.png",
-    size: "1536x1024",
+    width: 1536,
+    height: 1024,
+    seed: 42,
     prompt:
-      "Abstract gradient mesh with interconnected nodes forming a network pattern. " +
-      "Warm blues and purples. Modern, minimal, editorial style. No text. " +
+      "Abstract gradient mesh with interconnected glowing nodes forming a network pattern. " +
+      "Warm blues and purples on dark background. Modern minimal editorial style. No text. " +
       "Clean geometric lines, subtle glow on nodes, smooth gradient transitions.",
   },
   {
     name: "ai-shift-icon.png",
-    size: "1024x1024",
+    width: 800,
+    height: 800,
+    seed: 101,
     prompt:
-      "Minimalist illustration of a robot hand and human hand reaching toward each other, " +
-      "forming a bridge. Blue and purple tones on a white background. " +
-      "Clean vector style, simple geometric shapes, no text.",
+      "Minimalist illustration of a robot hand and human hand reaching toward each other " +
+      "forming a bridge. Blue and purple tones on clean white background. " +
+      "Clean vector style, simple geometric shapes, no text, centered composition.",
   },
   {
     name: "networking-icon.png",
-    size: "1024x1024",
+    width: 800,
+    height: 800,
+    seed: 202,
     prompt:
       "Minimalist illustration of interconnected people nodes forming a constellation pattern. " +
-      "Blue accent color on white background. Clean, modern, geometric style. " +
-      "Circular nodes with thin connecting lines, no text.",
+      "Blue accent color on white background. Clean modern geometric style. " +
+      "Circular nodes with thin connecting lines, no text, centered.",
   },
   {
     name: "human-skills-icon.png",
-    size: "1024x1024",
+    width: 800,
+    height: 800,
+    seed: 303,
     prompt:
-      "Minimalist illustration of a brain with circuit patterns on one side and organic tree branches " +
-      "on the other side. Purple and green tones on white background. " +
+      "Minimalist illustration of a brain split in half. Left side has digital circuit patterns, " +
+      "right side has organic tree branches with leaves. Purple and green tones on white background. " +
       "Clean editorial style, symmetric composition, no text.",
   },
   {
     name: "resources-icon.png",
-    size: "1024x1024",
+    width: 800,
+    height: 800,
+    seed: 404,
     prompt:
       "Minimalist illustration of stacked books with a glowing lightbulb emerging from the top. " +
       "Blue and warm amber tones on white background. Modern editorial style, " +
-      "clean geometric shapes, subtle glow effect, no text.",
+      "clean geometric shapes, subtle glow effect, no text, centered.",
   },
   {
     name: "case-study-collison.png",
-    size: "1024x1024",
+    width: 600,
+    height: 600,
+    seed: 501,
     prompt:
-      "Abstract geometric portrait silhouette representing a tech founder. " +
-      "Blue tones, minimal geometric shapes, modern editorial illustration style. " +
-      "No real face — only abstract silhouette composed of polygons and lines. No text.",
+      "Abstract geometric portrait silhouette of a young tech founder. " +
+      "Blue tones, minimal polygonal shapes, modern editorial illustration. " +
+      "No real face, abstract silhouette made of triangles and lines on white background. No text.",
   },
   {
     name: "case-study-rauch.png",
-    size: "1024x1024",
+    width: 600,
+    height: 600,
+    seed: 502,
     prompt:
-      "Abstract geometric portrait silhouette of a coder and builder. " +
-      "Purple tones, minimal geometric shapes, modern editorial illustration style. " +
-      "No real face — only abstract silhouette composed of polygons and lines. No text.",
+      "Abstract geometric portrait silhouette of a creative coder and open source builder. " +
+      "Purple tones, minimal polygonal shapes, modern editorial illustration. " +
+      "No real face, abstract silhouette made of triangles and lines on white background. No text.",
   },
   {
     name: "case-study-hightower.png",
-    size: "1024x1024",
+    width: 600,
+    height: 600,
+    seed: 503,
     prompt:
-      "Abstract geometric portrait silhouette of a community leader and public speaker. " +
-      "Green tones, minimal geometric shapes, modern editorial illustration style. " +
-      "No real face — only abstract silhouette composed of polygons and lines. No text.",
+      "Abstract geometric portrait silhouette of a community leader and speaker at a podium. " +
+      "Green tones, minimal polygonal shapes, modern editorial illustration. " +
+      "No real face, abstract silhouette made of triangles and lines on white background. No text.",
   },
   {
     name: "case-study-nadella.png",
-    size: "1024x1024",
+    width: 600,
+    height: 600,
+    seed: 504,
     prompt:
-      "Abstract geometric portrait silhouette of a corporate executive leader. " +
-      "Deep blue tones, minimal geometric shapes, modern editorial illustration style. " +
-      "No real face — only abstract silhouette composed of polygons and lines. No text.",
+      "Abstract geometric portrait silhouette of an executive corporate leader. " +
+      "Deep navy blue tones, minimal polygonal shapes, modern editorial illustration. " +
+      "No real face, abstract silhouette made of triangles and lines on white background. No text.",
   },
-] as const;
+];
 
-// ---------------------------------------------------------------------------
-// Generation logic
-// ---------------------------------------------------------------------------
-
-interface GenerationResult {
-  name: string;
-  success: boolean;
-  error?: string;
+function buildUrl(spec: ImageSpec): string {
+  const encoded = encodeURIComponent(spec.prompt);
+  return `${BASE_URL}/${encoded}?width=${spec.width}&height=${spec.height}&model=flux&nologo=true&seed=${spec.seed}`;
 }
 
-async function generateImage(
-  client: OpenAI,
+async function downloadImage(
   spec: ImageSpec,
   index: number,
   total: number
-): Promise<GenerationResult> {
-  console.log(`Generating [${index}/${total}] ${spec.name}...`);
+): Promise<boolean> {
+  const url = buildUrl(spec);
+  console.log(`\n[${index}/${total}] Generating ${spec.name}...`);
+  console.log(`  URL: ${url.slice(0, 120)}...`);
 
   try {
-    const response = await client.images.generate({
-      model: MODEL,
-      prompt: spec.prompt,
-      size: spec.size,
-      quality: QUALITY,
-      output_format: "png",
-      n: 1,
-    });
-
-    const imageData = response.data?.[0];
-    if (!imageData?.b64_json) {
-      return {
-        name: spec.name,
-        success: false,
-        error: "No b64_json in response",
-      };
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error(`  Failed: HTTP ${response.status}`);
+      return false;
     }
 
-    const buffer = Buffer.from(imageData.b64_json, "base64");
+    const buffer = Buffer.from(await response.arrayBuffer());
     const outputPath = join(ASSETS_DIR, spec.name);
     await writeFile(outputPath, buffer);
 
-    console.log(`  Saved ${spec.name} (${(buffer.length / 1024).toFixed(1)} KB)`);
-    return { name: spec.name, success: true };
+    console.log(`  Saved ${spec.name} (${(buffer.length / 1024).toFixed(0)} KB)`);
+    return true;
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.error(`  Failed ${spec.name}: ${message}`);
-    return { name: spec.name, success: false, error: message };
+    console.error(`  Failed: ${err instanceof Error ? err.message : String(err)}`);
+    return false;
   }
 }
 
 async function main(): Promise<void> {
-  const apiKey = Bun.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    console.error("Error: OPENAI_API_KEY is not set. Add it to your .env file.");
-    process.exit(1);
-  }
-
-  const client = new OpenAI({ apiKey });
+  console.log("=== EngineerHub Image Pipeline (Pollinations.ai / FLUX) ===");
+  console.log("Free, no API key required.\n");
 
   await mkdir(ASSETS_DIR, { recursive: true });
 
   const total = IMAGES.length;
-  const results: GenerationResult[] = [];
+  let succeeded = 0;
 
   for (let i = 0; i < IMAGES.length; i++) {
-    const spec = IMAGES[i];
-    const result = await generateImage(client, spec, i + 1, total);
-    results.push(result);
+    const ok = await downloadImage(IMAGES[i], i + 1, total);
+    if (ok) succeeded++;
   }
-
-  // ---------------------------------------------------------------------------
-  // Summary
-  // ---------------------------------------------------------------------------
-
-  const succeeded = results.filter((r) => r.success).length;
-  const failed = results.filter((r) => !r.success);
-  const estimatedCost = succeeded * COST_PER_IMAGE_USD;
 
   console.log("\n--- Summary ---");
   console.log(`Generated: ${succeeded}/${total} images`);
-  console.log(`Estimated cost: $${estimatedCost.toFixed(3)}`);
-  console.log(`Output directory: ${ASSETS_DIR}`);
+  console.log(`Cost: $0.00 (Pollinations.ai is free)`);
+  console.log(`Output: ${ASSETS_DIR}`);
 
-  if (failed.length > 0) {
-    console.log("\nFailed images:");
-    for (const f of failed) {
-      console.log(`  - ${f.name}: ${f.error}`);
-    }
-    process.exit(1);
-  }
+  if (succeeded < total) process.exit(1);
 }
 
 main();
